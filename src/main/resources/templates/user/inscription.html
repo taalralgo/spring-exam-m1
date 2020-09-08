@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion</title>
+</head>
+<style>
+    body {
+        font-family: 'Raleway', sans-serif;
+        background-color: #e7e7e7;
+    }
+    .wrapper {
+        width: 800px;
+        height: 600px;
+        position: relative;
+        margin: 3% auto;
+        box-shadow: 2px 18px 70px 0px #9d9d9d;
+        overflow: hidden;
+    }
+    .login-text {
+        width: 800px;
+        height: 450px;
+        background: linear-gradient(to left, #ab68ca, #de67a3);
+        position: absolute;
+        top: -300px;
+        box-sizing: border-box;
+        padding: 6%;
+        transition: all 0.5s ease-in-out;
+        z-index: 11;
+    }
+    .text {
+        margin-left: 20px;
+        color: #fff;
+        display: none;
+        transition: all 0.5s ease-in-out;
+        transition-delay: 0.3s;
+    }
+    .text a, .text a:visited {
+        font-size: 36px;
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        display: block;
+    }
+    .text hr {
+        width: 10%;
+        float: left;
+        background-color: #fff;
+        font-size: 16px;
+    }
+    .text input {
+        margin-top: 30px;
+        height: 40px;
+        width: 300px;
+        border-radius: 2px;
+        border: none;
+        background-color: #444;
+        opacity: 0.6;
+        outline: none;
+        color: #fff;
+        padding-left: 10px;
+    }
+    .text input[type=text] {
+        margin-top: 60px;
+    }
+    .text button {
+        margin-top: 60px;
+        height: 40px;
+        width: 140px;
+        outline: none;
+    }
+    .text .login-btn {
+        background: #fff;
+        border: none;
+        border-radius: 2px;
+        color: #696a86;
+    }
+    .text .signup-btn {
+        background: transparent;
+        border: 2px solid #fff;
+        border-radius: 2px;
+        color: #fff;
+        margin-left: 30px;
+    }
+    .cta {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: #696a86;
+        border: 2px solid #fff;
+        position: absolute;
+        bottom: -30px;
+        left: 370px;
+        color: #fff;
+        outline: none;
+        cursor: pointer;
+        z-index: 11;
+    }
+    .call-text {
+        background-color: #fff;
+        width: 800px;
+        height: 450px;
+        position: absolute;
+        bottom: 0;
+        padding: 10%;
+        box-sizing: border-box;
+        text-align: center;
+    }
+    .call-text h1 {
+        font-size: 42px;
+        margin-top: 10%;
+        color: #696a86;
+    }
+    .call-text h1 span {
+        color: #333;
+        font-weight: bolder;
+    }
+    .call-text button {
+        height: 40px;
+        width: 180px;
+        border: none;
+        border-radius: 20px;
+        background: linear-gradient(to left, #ab68ca, #de67a3);
+        color: #fff;
+        font-weight: bolder;
+        margin-top: 30px;
+        cursor: pointer;
+        outline: none;
+    }
+    .show-hide {
+        display: block;
+    }
+    .expand {
+        transform: translateY(300px);
+    }
+</style>
+<body>
+<div class="wrapper">
+    <div class="login-text">
+        <button class="cta"><i class="fa fa-chevron-down fa-1x"></i></button>
+        <div class="text">
+            <form th:action="@{/inscription}" th:object="${utilisateur}" method="post" enctype="multipart/form-data" action="#">
+                <a href="/login">Inscription</a>
+                <hr>
+                <br>
+                <input th:field="*{nomComplet}" type="text" placeholder="Nom complet" id="nomComplet" name="nomComplet" required="required" autofocus="autofocus"/>
+                <br>
+                <input th:field="*{email}" type="email" placeholder="Email de l'utilisateur" id="email" name="email" required="required"/>
+                <input type="hidden" id="id" th:field="*{id}" name="id"/>
+                <br>
+                <select name="role" id="role" th:field="*{role.id}">
+                    <option th:each="role:${roles}" th:text="${role.libRole}" th:value="${role.id}"></option>
+                </select>
+                <input th:field="*{parts}" type="file" accept=".png,.jpg, .jpeg" id="inputphoto" name="photo" required="required"/>
+                <div class="photo" style="float: right">
+                    <img style="width: 100px; height: 100px;" th:src="@{/image/noimg}" id="photo" alt="photo" />
+                    <br>
+                </div>
+                <button class="signup-btn">Inscription</button>
+            </form>
+        </div>
+    </div>
+    <div class="call-text">
+        <div th:if="${param.error}">
+            <h4 style="color:red;">Login ou mot de passe incorrect !!!</h4>
+        </div>
+        <h1>Notre premier projet <span>SPRING BOOT</span> avec MR. NIASS</h1>
+        <button style="width: 250px">Codé par Daouda S. THERA</button>
+    </div>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://use.fontawesome.com/31263fc466.js"></script>
+<script>
+    var cta = document.querySelector(".cta");
+    var check = 0;
+
+    cta.addEventListener('click', function(e){
+        var text = e.target.nextElementSibling;
+        var loginText = e.target.parentElement;
+        text.classList.toggle('show-hide');
+        loginText.classList.toggle('expand');
+        if(check == 0)
+        {
+            cta.innerHTML = "<i class=\"fa fa-chevron-up\"></i>";
+            check++;
+        }
+        else
+        {
+            cta.innerHTML = "<i class=\"fa fa-chevron-down\"></i>";
+            check = 0;
+        }
+    })
+</script>
+<script type="application/javascript">
+    $(document).ready(function () {
+
+        function imageIsLoaded(e) {
+            //$("#file").css("color","green");
+            //$('#image_preview').css("display", "block");
+            $('#photo').attr('src', e.target.result);
+            $('#photo').attr('width', '100px');
+            $('#photo').attr('height', '100px');
+        };
+        $('#inputphoto').change(function () {
+            if (this.files && this.files[0]) {
+                var file = this.files[0];
+                var imagefile = file.type;
+                var reader = new FileReader();
+                reader.onload = imageIsLoaded;
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+    })
+</script>
+</body>
+</html>

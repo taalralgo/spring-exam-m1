@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="base.html">
+<head>
+    <meta charset="UTF-8">
+    <title>Utilisateurs</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <!-- Modal -->
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Enregistrement d'un utilisateur</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" th:action="@{/employe/add}" th:object="${utilisateur}" enctype="multipart/form-data" action="#">
+                    <div class="modal-body">
+                        <div class="common">
+                            <div class="form-group">
+                                <label for="role">Role</label>
+                                <select name="role" id="role" th:field="*{role.id}" class="form-control">
+                                    <option th:each="role:${roles}" th:text="${role.libRole}"
+                                            th:value="${role.id}"></option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="numpiece">Numero de piece</label>
+                                <input th:field="*{numeroPiece}" type="text" class="form-control" id="numpiece"
+                                       placeholder="Numero de piece de l'utilisateur">
+                            </div>
+                            <div class="form-group">
+                                <label for="login">Prenom</label>
+                                <input th:field="*{prenom}" type="text" class="form-control" id="prenom"
+                                       placeholder="Prenom de l'utilisateur">
+                            </div>
+                            <div class="form-group">
+                                <label for="nom">Nom</label>
+                                <input th:field="*{nom}" type="text" class="form-control" id="nom"
+                                       placeholder="Nom de l'utilisateur">
+                            </div>
+                            <div class="form-group">
+                                <label for="telephone">Telephone</label>
+                                <input th:field="*{telephone}" type="number" class="form-control" id="telephone"
+                                       placeholder="Telephone de l'utilisateur">
+                            </div>
+                            <div class="form-group user-password">
+                                <label for="password">Mot de passe</label>
+                                <input th:field="*{password}" type="password" class="form-control" id="password"
+                                       placeholder="Mot de passe de l'utilisateur">
+                            </div>
+
+                        </div>
+                        <div class="admin">
+                            <div class="form-group">
+                                <label for="login">Login</label>
+                                <input th:field="*{login}" type="text" class="form-control" id="login"
+                                       placeholder="Login de l'utilisateur">
+                            </div>
+                        </div>
+                        <div class="caissier">
+                            <div class="form-group">
+                                <label for="role">Code <span class="text-danger">*</span></label>
+                                <input th:field="*{code}" type="text" class="form-control" id="code"
+                                       placeholder="Code de l'utilisateur">
+                            </div>
+                            <div class="form-group">
+                                <label for="avatar">Avatar</label>
+                                <input th:field="*{parts}" class="form-control" type="file" accept=".png,.jpg, .jpeg" id="avatar" name="photo" required/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal"
+                        style="margin: 20px;">
+                    Enregistrer un utilisateur
+                </button>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>First name</th>
+                            <th>Progress</th>
+                            <th>Amount</th>
+                            <th>Deadline</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="utilisateur:${utilisateurs}">
+                            <td class="py-1">
+                                <img src="../../../assets/images/faces-clipart/pic-1.png" alt="image"/>
+                            </td>
+                            <td>Herman Beck</td>
+                            <td>
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%;"
+                                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                            <td>$ 77.99</td>
+                            <td>May 15, 2015</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="/js/user.js"></script>
+    <!--    <script src="/js/app.js"></script>-->
+    <!--    <script>-->
+    <!--        $(document).ready(function () {-->
+    <!--            $('.btnRemove').click(function () {-->
+    <!--                //-->
+    <!--                const swalWithBootstrapButtons = Swal.mixin({-->
+    <!--                    customClass: {-->
+    <!--                        confirmButton: 'btn btn-success',-->
+    <!--                        cancelButton: 'btn btn-danger'-->
+    <!--                    },-->
+    <!--                    buttonsStyling: false-->
+    <!--                })-->
+
+    <!--                swalWithBootstrapButtons.fire({-->
+    <!--                    title: 'Are you sure?',-->
+    <!--                    text: "You won't be able to revert this!",-->
+    <!--                    icon: 'warning',-->
+    <!--                    showCancelButton: true,-->
+    <!--                    confirmButtonText: 'Yes, delete it!',-->
+    <!--                    cancelButtonText: 'No, cancel!',-->
+    <!--                    reverseButtons: true-->
+    <!--                }).then((result) => {-->
+    <!--                    if (result.value) {-->
+    <!--                        var id = $(this).attr('data')-->
+    <!--                        $.ajax({-->
+    <!--                            url: '/user/delete/' + id,-->
+    <!--                            type: 'get',-->
+    <!--                            success: function (data) {-->
+    <!--                                if(data.status === "success") {-->
+    <!--                                    // swalWithBootstrapButtons.fire(-->
+    <!--                                    //     'Deleted!',-->
+    <!--                                    //     'La ligne a été supprimée avec succès.',-->
+    <!--                                    //     'success'-->
+    <!--                                    // )-->
+    <!--                                    window.location.reload()-->
+    <!--                                }-->
+    <!--                                else {-->
+    <!--                                    swalWithBootstrapButtons.fire(-->
+    <!--                                        'Deleted!',-->
+    <!--                                        'Erreur de suppression.',-->
+    <!--                                        'error'-->
+    <!--                                    )-->
+    <!--                                }-->
+
+    <!--                            },-->
+    <!--                            error: function (error) {-->
+    <!--                                console.error(error);-->
+    <!--                            }-->
+    <!--                        })-->
+    <!--                    } else if (-->
+    <!--                        /* Read more about handling dismissals below */-->
+    <!--                        result.dismiss === Swal.DismissReason.cancel-->
+    <!--                    ) {-->
+    <!--                        swalWithBootstrapButtons.fire(-->
+    <!--                            'Cancelled',-->
+    <!--                            'Your imaginary file is safe :)',-->
+    <!--                            'error'-->
+    <!--                        )-->
+    <!--                    }-->
+    <!--                })-->
+    <!--                //-->
+    <!--            });-->
+    <!--        })-->
+    <!--    </script>-->
+</div>
+</body>
+</html>
