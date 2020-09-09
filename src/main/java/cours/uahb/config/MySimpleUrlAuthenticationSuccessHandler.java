@@ -99,17 +99,28 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
       Utils.setToken(token);
       System.out.println("Token :"+token);
 
-//      u = iUtilisateur.findByLogin(utils.getConnectedUser());
-      u = iUtilisateur.findByCode(utils.getConnectedUser());
-//      if(!u.isChanged())
+      u = new Utilisateur();
+
+//      if(role.equals("ROLE_ADMIN"))
 //      {
-//          return "user/changepassword";
+//          u = iUtilisateur.findByCode(utils.getConnectedUser());
 //      }
+//
+//      if(role.equals("ROLE_CAISSIER"))
+//      {
+//          u = iUtilisateur.findByCode(utils.getConnectedUser());
+//      }
+      u = iUtilisateur.findByCode(utils.getConnectedUser());
+
+      if(!u.isChanged())
+      {
+          return "user/changepassword";
+      }
       if (isAdmin) {
-          return "admin";
+          return "home";
       }
       if (isCaissier) {
-        return "simple";
+        return "home";
       }
       else {
           throw new IllegalStateException();

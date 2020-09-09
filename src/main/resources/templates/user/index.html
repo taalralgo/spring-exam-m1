@@ -22,7 +22,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="post" th:action="@{/employe/add}" th:object="${utilisateur}" enctype="multipart/form-data" action="#">
+                <form method="post" class="form-add-user" th:action="@{/admin/user/add}" th:object="${utilisateur}" enctype="multipart/form-data" action="#">
                     <div class="modal-body">
                         <div class="common">
                             <div class="form-group">
@@ -54,8 +54,13 @@
                             </div>
                             <div class="form-group user-password">
                                 <label for="password">Mot de passe</label>
-                                <input th:field="*{password}" type="password" class="form-control" id="password"
+                                <input th:field="*{pwd}" type="password" class="form-control" id="password"
                                        placeholder="Mot de passe de l'utilisateur">
+                            </div>
+                            <div class="form-group user-password">
+                                <label for="confirmer">Confirmer le mot de passe</label>
+                                <input type="password" class="form-control" id="confirmer"
+                                       placeholder="Confirmer le mot de passe">
                             </div>
 
                         </div>
@@ -74,12 +79,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="avatar">Avatar</label>
-                                <input th:field="*{parts}" class="form-control" type="file" accept=".png,.jpg, .jpeg" id="avatar" name="photo" required/>
+                                <input th:field="*{parts}" class="form-control" type="file" accept=".png,.jpg, .jpeg" id="avatar" name="photo"/>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Enregistrer</button>
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
                     </div>
                 </form>
             </div>
@@ -96,27 +101,31 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th>User</th>
-                            <th>First name</th>
-                            <th>Progress</th>
-                            <th>Amount</th>
-                            <th>Deadline</th>
+                            <th></th>
+                            <th>Numero de pièce</th>
+                            <th>Prenom et nom</th>
+                            <th>Telephone</th>
+                            <th>Role</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="utilisateur:${utilisateurs}">
                             <td class="py-1">
-                                <img src="../../../assets/images/faces-clipart/pic-1.png" alt="image"/>
+                                <img th:src="@{'/images/' + ${utilisateur.photo}}" alt="image"/>
                             </td>
-                            <td>Herman Beck</td>
+                            <td th:text="${utilisateur.numeroPiece}">Herman Beck</td>
+                            <td th:text="${utilisateur.prenom+' '+utilisateur.nom}"></td>
+                            <td th:text="${utilisateur.telephone}">$ 77.99</td>
+                            <td th:text="${utilisateur.role.libRole}">May 15, 2015</td>
                             <td>
-                                <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%;"
-                                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
+                                <a class="btn btn-info">Modifier</a>
+                                <a
+                                        th:data="${utilisateur.id}"
+                                        class="btn btn-danger btnRemove" href="#"
+                                        role="button" data-toggle="modal">Supprimer</i>
+                                </a>
                             </td>
-                            <td>$ 77.99</td>
-                            <td>May 15, 2015</td>
                         </tr>
                         </tbody>
                     </table>
@@ -128,70 +137,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="/js/user.js"></script>
-    <!--    <script src="/js/app.js"></script>-->
-    <!--    <script>-->
-    <!--        $(document).ready(function () {-->
-    <!--            $('.btnRemove').click(function () {-->
-    <!--                //-->
-    <!--                const swalWithBootstrapButtons = Swal.mixin({-->
-    <!--                    customClass: {-->
-    <!--                        confirmButton: 'btn btn-success',-->
-    <!--                        cancelButton: 'btn btn-danger'-->
-    <!--                    },-->
-    <!--                    buttonsStyling: false-->
-    <!--                })-->
-
-    <!--                swalWithBootstrapButtons.fire({-->
-    <!--                    title: 'Are you sure?',-->
-    <!--                    text: "You won't be able to revert this!",-->
-    <!--                    icon: 'warning',-->
-    <!--                    showCancelButton: true,-->
-    <!--                    confirmButtonText: 'Yes, delete it!',-->
-    <!--                    cancelButtonText: 'No, cancel!',-->
-    <!--                    reverseButtons: true-->
-    <!--                }).then((result) => {-->
-    <!--                    if (result.value) {-->
-    <!--                        var id = $(this).attr('data')-->
-    <!--                        $.ajax({-->
-    <!--                            url: '/user/delete/' + id,-->
-    <!--                            type: 'get',-->
-    <!--                            success: function (data) {-->
-    <!--                                if(data.status === "success") {-->
-    <!--                                    // swalWithBootstrapButtons.fire(-->
-    <!--                                    //     'Deleted!',-->
-    <!--                                    //     'La ligne a été supprimée avec succès.',-->
-    <!--                                    //     'success'-->
-    <!--                                    // )-->
-    <!--                                    window.location.reload()-->
-    <!--                                }-->
-    <!--                                else {-->
-    <!--                                    swalWithBootstrapButtons.fire(-->
-    <!--                                        'Deleted!',-->
-    <!--                                        'Erreur de suppression.',-->
-    <!--                                        'error'-->
-    <!--                                    )-->
-    <!--                                }-->
-
-    <!--                            },-->
-    <!--                            error: function (error) {-->
-    <!--                                console.error(error);-->
-    <!--                            }-->
-    <!--                        })-->
-    <!--                    } else if (-->
-    <!--                        /* Read more about handling dismissals below */-->
-    <!--                        result.dismiss === Swal.DismissReason.cancel-->
-    <!--                    ) {-->
-    <!--                        swalWithBootstrapButtons.fire(-->
-    <!--                            'Cancelled',-->
-    <!--                            'Your imaginary file is safe :)',-->
-    <!--                            'error'-->
-    <!--                        )-->
-    <!--                    }-->
-    <!--                })-->
-    <!--                //-->
-    <!--            });-->
-    <!--        })-->
-    <!--    </script>-->
 </div>
 </body>
 </html>

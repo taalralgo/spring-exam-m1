@@ -48,7 +48,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
             // dont authenticate this particular request
-            http.authorizeRequests().antMatchers("/","/login","/admin/*").permitAll()
+            http.authorizeRequests().antMatchers("/","/login","/admin/*", "/admin/user/add").permitAll()
             // all other requests need to be authenticated
             .anyRequest().authenticated().and()
             .formLogin().loginPage("/login").failureUrl("/login?error")

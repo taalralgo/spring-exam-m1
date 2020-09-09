@@ -24,11 +24,11 @@ public class Utilisateur implements UserDetails
     private String numeroPiece;
     @Column(nullable = false)
     private String nom;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String login;
     @Column(nullable = false)
     private String prenom;
-    @Column(length = 9, nullable = false)
+    @Column(length = 9, nullable = false, unique = true)
     private String telephone;
 //    Si caissier ou admin
     private String code;
@@ -37,6 +37,7 @@ public class Utilisateur implements UserDetails
     private String numeroContrat;
     @Column(columnDefinition = "text")
     private String articleContrat;
+    @Column(nullable = false)
     private String pwd;
     private boolean changed = false;
     @Transient
