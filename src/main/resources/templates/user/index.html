@@ -104,6 +104,7 @@
                             <th></th>
                             <th>Numero de pièce</th>
                             <th>Prenom et nom</th>
+                            <th>Nom d'utilisateur</th>
                             <th>Telephone</th>
                             <th>Role</th>
                             <th>Actions</th>
@@ -116,6 +117,7 @@
                             </td>
                             <td th:text="${utilisateur.numeroPiece}">Herman Beck</td>
                             <td th:text="${utilisateur.prenom+' '+utilisateur.nom}"></td>
+                            <td th:text="${utilisateur.login}">$ 77.99</td>
                             <td th:text="${utilisateur.telephone}">$ 77.99</td>
                             <td th:text="${utilisateur.role.libRole}">May 15, 2015</td>
                             <td>

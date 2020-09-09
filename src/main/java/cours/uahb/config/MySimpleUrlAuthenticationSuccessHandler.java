@@ -70,8 +70,6 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
   private CustumUserDetailsService userDetailsService;
   
   protected String determineTargetUrl(Authentication authentication) {
-//      boolean isSuperAdmin = false;
-//      boolean isCaisse = false;
       boolean isAdmin = false;
       boolean isCaissier = false;
       Collection<? extends GrantedAuthority> authorities

@@ -31,7 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private AccessDeniedHandler accessDeniedHandler;
-    
+
     @Autowired
     protected void configureGlobal(AuthenticationManagerBuilder auth)
             throws Exception {
@@ -48,7 +48,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
             // dont authenticate this particular request
-            http.authorizeRequests().antMatchers("/","/login","/admin/*", "/admin/user/add").permitAll()
+            http.authorizeRequests().antMatchers("/","/login").permitAll()
             // all other requests need to be authenticated
             .anyRequest().authenticated().and()
             .formLogin().loginPage("/login").failureUrl("/login?error")
@@ -57,7 +57,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.exceptionHandling().accessDeniedHandler(accessDeniedHandler);
                   //.authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
                   //.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-             	
+
     }
 
     @Override
@@ -70,7 +70,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public AuthenticationSuccessHandler myAuthenticationSuccessHandler() {
     	return new MySimpleUrlAuthenticationSuccessHandler();
     }
-    
+
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
       final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
