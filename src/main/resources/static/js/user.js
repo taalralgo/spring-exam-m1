@@ -27,7 +27,9 @@ $(document).ready(function () {
                 break;
             case 'ROLE_ADMIN':
                 var login = $('#login').val();
-                if(numpiece === '' || prenom === '' || nom === '' || telephone === '' || login === '' ) {
+                var numcontrat = $('#numcontrat').val();
+                var articlecontrat = $('#articlecontrat').val();
+                if(numpiece === '' || prenom === '' || nom === '' || telephone === '' || login === '' || numcontrat === '' || articlecontrat === '') {
                     alert("Veuillez renseigner tous les champs!");
                     return false;
                 }

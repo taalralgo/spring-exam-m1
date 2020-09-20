@@ -84,6 +84,16 @@
                                 <input th:field="*{login}" type="text" class="form-control" id="login"
                                        placeholder="Login de l'utilisateur">
                             </div>
+                            <div class="form-group">
+                                <label for="numcontrat">Numero contrat</label>
+                                <input th:field="*{numeroContrat}" type="text" class="form-control" id="numcontrat"
+                                       placeholder="Numero du contrat si ADMIN">
+                            </div>
+                            <div class="form-group">
+                                <label for="articlecontrat">Numero contrat</label>
+                                <textarea th:field="*{articleContrat}" class="form-control" id="articlecontrat"
+                                          placeholder="Numero du contrat"></textarea>
+                            </div>
                         </div>
                         <div class="caissier">
                             <div class="form-group">

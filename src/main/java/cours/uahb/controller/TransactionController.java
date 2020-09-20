@@ -57,7 +57,7 @@ public class TransactionController
     {
         String error = "";
         transaction.setCode(randomString(10));
-        if(transaction.getMontant() < 5)
+        if(transaction.getMontant() < 1000)
         {
             error = "Le montant de la transaction n'est pas correct";
             model.addAttribute("error", error);
@@ -70,10 +70,18 @@ public class TransactionController
             return "transaction/create";
         }
         Utilisateur user = utilisateurRepository.findByCode(utils.getConnectedUser());
+        if(transaction.getMontant() > user.getIv())
+        {
+            error = "Votre IV n'est pas suffisant pour effectuer cette operation!";
+            model.addAttribute("error", error);
+            return "transaction/create";
+        }
         transaction.setUtilisateur(user);
         transactionRepository.save(transaction);
         Operation operation = new Operation(transaction, "Envoie", false, new Date());
         operationRepository.save(operation);
+        user.setIv(user.getIv() - transaction.getMontant());
+        utilisateurRepository.save(user);
 
         model.addAttribute("success", "L'operation a été effectuée avec succès!");
         return "redirect:/transactions/";

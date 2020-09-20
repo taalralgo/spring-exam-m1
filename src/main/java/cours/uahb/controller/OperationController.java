@@ -60,11 +60,11 @@ public class OperationController
                 if (trans.isPresent())
                 {
                     Transaction transaction = trans.get();
-                    if(caissier.getIv() >= transaction.getMontant())
-                    {
+//                    if(caissier.getIv() >= transaction.getMontant())
+//                    {
                         Retrait retrait = new Retrait(caissier,transaction, new Date());
                         op.setDateRetrait(new Date());
-                        caissier.setIv(caissier.getIv() - transaction.getMontant());
+                        caissier.setIv(caissier.getIv() + transaction.getMontant());
                         operationRepository.save(op);
                         retraitRepository.save(retrait);
                         utilisateurRepository.save(caissier);
@@ -91,8 +91,8 @@ public class OperationController
                         gainRepository.save(gainSave);
 
                         return ResponseEntity.ok(new Response("success"));
-                    }
-                    return ResponseEntity.ok(new Response("iv"));
+//                    }
+//                    return ResponseEntity.ok(new Response("iv"));
                 }
                 return ResponseEntity.ok(new Response("error"));
             }
