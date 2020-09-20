@@ -39,6 +39,10 @@ $(document).ready(function () {
                     alert("Veuillez renseigner tous les champs!");
                     return false;
                 }
+                if(iv < 100000) {
+                    alert("La saomme de l'IV n'est pas valide");
+                    return false;
+                }
                 break;
             case 'ROLE_CLIENT':
                 if(numpiece === '' || prenom === '' || nom === '' || telephone === '') {
