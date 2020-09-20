@@ -7,5 +7,6 @@ public interface IUtilisateur extends JpaRepository<Utilisateur,Integer>
 {
     public Utilisateur findByLogin(String email);
     public Utilisateur findByCode(String code);
-//    public Utilisateur findBy(String code);
+    public Utilisateur findByNumeroPiece(String numeroPiece);
+    public Utilisateur findAllByAdminId(int adminId);
 }

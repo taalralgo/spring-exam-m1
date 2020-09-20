@@ -72,6 +72,7 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
   protected String determineTargetUrl(Authentication authentication) {
       boolean isAdmin = false;
       boolean isCaissier = false;
+      boolean isSuper = false;
       Collection<? extends GrantedAuthority> authorities
        = authentication.getAuthorities();
       String role = "";
@@ -84,6 +85,11 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
           else if (grantedAuthority.getAuthority().equals("ROLE_CAISSIER")) {
               role = grantedAuthority.getAuthority();
               isCaissier = true;
+              break;
+          }
+          else if (grantedAuthority.getAuthority().equals("ROLE_SUPER")) {
+              role = grantedAuthority.getAuthority();
+              isSuper = true;
               break;
           }
           
@@ -112,12 +118,15 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
 
       if(!u.isChanged())
       {
-          return "user/changepassword";
+          return "user/reset";
       }
       if (isAdmin) {
           return "home";
       }
       if (isCaissier) {
+        return "home";
+      }
+      if (isSuper) {
         return "home";
       }
       else {

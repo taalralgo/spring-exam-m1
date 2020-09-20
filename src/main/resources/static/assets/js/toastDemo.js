@@ -42,7 +42,7 @@
       heading: 'Danger',
       text: 'And these were just the basic demos! Scroll down to check further details on how to customize the output.',
       showHideTransition: 'slide',
-      icon: 'error',
+      icon: 'templates.error.error',
       loaderBg: '#f2a654',
       position: 'top-right'
     })

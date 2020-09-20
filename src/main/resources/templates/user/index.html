@@ -11,7 +11,7 @@
 
 <div layout:fragment="content">
 
-    <!-- Modal -->
+    <!-- Modal ADD USER -->
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -22,15 +22,29 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="post" class="form-add-user" th:action="@{/admin/user/add}" th:object="${utilisateur}" enctype="multipart/form-data" action="#">
+                <form method="post" class="form-add-user" th:action="@{/admin/user/add}" th:object="${utilisateur}"
+                      enctype="multipart/form-data" action="#">
                     <div class="modal-body">
                         <div class="common">
+                            <input th:field="*{id}" type="hidden" id="update-user-id">
                             <div class="form-group">
                                 <label for="role">Role</label>
-                                <select name="role" id="role" th:field="*{role.id}" class="form-control">
-                                    <option th:each="role:${roles}" th:text="${role.libRole}"
-                                            th:value="${role.id}"></option>
-                                </select>
+                                <div th:if="${auth.getRole().getLibRole() == 'ROLE_SUPER'}">
+                                    <select name="role" id="role" th:field="*{role.id}" class="form-control">
+                                        <option th:each="role:${roles}" th:text="${role.libRole}"
+                                                th:if="${role.libRole} == 'ROLE_ADMIN' OR ${role.libRole} == 'ROLE_SUPER'"
+                                                th:value="${role.id}">
+                                        </option>
+                                    </select>
+                                </div>
+                                <div th:if="${auth.getRole().getLibRole() == 'ROLE_ADMIN'}">
+                                    <select name="role" id="role" th:field="*{role.id}" class="form-control">
+                                        <option th:each="role:${roles}" th:text="${role.libRole}"
+                                                th:if="${role.libRole} == 'ROLE_CAISSIER'"
+                                                th:value="${role.id}">
+                                        </option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="numpiece">Numero de piece</label>
@@ -73,13 +87,20 @@
                         </div>
                         <div class="caissier">
                             <div class="form-group">
-                                <label for="role">Code <span class="text-danger">*</span></label>
+                                <!--                                <label for="role">Code <span class="text-danger">*</span></label>-->
+                                <label for="role">Code</label>
                                 <input th:field="*{code}" type="text" class="form-control" id="code"
                                        placeholder="Code de l'utilisateur">
                             </div>
                             <div class="form-group">
+                                <label for="iv">IV</label>
+                                <input th:field="*{iv}" type="number" min="100000" class="form-control" th:value="100000" value="100000"  id="iv"
+                                       placeholder="IV du caissier">
+                            </div>
+                            <div class="form-group">
                                 <label for="avatar">Avatar</label>
-                                <input th:field="*{parts}" class="form-control" type="file" accept=".png,.jpg, .jpeg" id="avatar" name="photo"/>
+                                <input th:field="*{parts}" class="form-control" type="file" accept=".png,.jpg, .jpeg"
+                                       id="avatar" name="photo"/>
                             </div>
                         </div>
                     </div>
@@ -90,6 +111,8 @@
             </div>
         </div>
     </div>
+    <!--  END MODAL ADD USER  -->
+
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -121,7 +144,10 @@
                             <td th:text="${utilisateur.telephone}">$ 77.99</td>
                             <td th:text="${utilisateur.role.libRole}">May 15, 2015</td>
                             <td>
-                                <a class="btn btn-info">Modifier</a>
+                                <a class="btn btn-info edit-user"
+                                   th:user-id="${utilisateur.id}"
+                                   data-toggle="modal"
+                                   data-target="#addModal">Modifier</a>
                                 <a
                                         th:data="${utilisateur.id}"
                                         class="btn btn-danger btnRemove" href="#"

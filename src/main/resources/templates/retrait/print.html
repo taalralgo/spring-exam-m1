@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Print</title>
+
+    <!-- Bootstrap cdn 3.3.7 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Custom font montseraat -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700" rel="stylesheet">
+
+    <!-- Custom style invoice1.css -->
+    <link rel="stylesheet" type="text/css" href="/css/facture.css">
+</head>
+<body>
+<section class="back">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="invoice-wrapper">
+                    <div class="invoice-top">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="invoice-top-left">
+                                    <h2 th:text="${retrait.transaction.prenomEmetteur + ' '+ retrait.transaction.nomEmetteur}">John Doe</h2>
+                                    <h3 th:text="${'Tel: '+retrait.transaction.telephoneEmetteur}">Type: envoie</h3>
+                                    <h5>Type: Envoie</h5>
+
+                                    <h4>Date retrait</h4>
+                                    <h6 th:text="${retrait.dateTretrait}">September 06, 2017</h6>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="invoice-top-right">
+                                    <h2 th:text="${retrait.transaction.prenom+ ' ' + retrait.transaction.nom}">Martin Sen</h2>
+                                    <h3 th:text="${retrait.transaction.telephone}">Hp Solutions</h3>
+                                    <h5>Type: Retrait</h5>
+
+                                    <!-- <div class="logo-wrapper">
+                                        <img src="./Acme.png" class="img-responsive pull-right logo" />
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="invoice-bottom">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="task-table-wrapper">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>DESCRIPTION</th>
+                                            <th>DATE</th>
+                                            <th>MONTANT</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="desc">
+<!--                                                <h3>Operation de retrait:</h3>-->
+                                                <h5>Operation de type retrait.</h5>
+                                            </td>
+                                            <td><h4 th:text="${retrait.dateTretrait}">₹50</h4></td>
+                                            <td><h4 th:text="${retrait.transaction.montant}">50</h4></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-md-12">
+                                <div class="invoice-bottom-total">
+                                    <div class="col-sm-8 no-padding">
+                                        <div class="sub-total-box">
+                                            <h6>Taxe</h6>
+                                            <h5>5%</h5>
+                                        </div>
+                                        <div class="add-box">
+                                            <h3>soit</h3>
+                                        </div>
+                                        <div class="tax-box">
+<!--                                            <h6>TAXES</h6>-->
+                                            <h5 th:text="${gain + ' FCFA'}">5%</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 no-padding">
+                                        <div class="total-box">
+                                            <h6>TOTAL</h6>
+                                            <h3 th:text="${montant + ' FCFA'}">₹55,866</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-xs-12">
+                                <hr class="divider">
+                            </div>
+                            <div class="col-sm-4">
+                                <h6 class="text-left">Daouda S. THERA</h6>
+                            </div>
+                            <div class="col-sm-4">
+                                <h6 class="text-center">thera@acan.email</h6>
+                            </div>
+                            <div class="col-sm-4">
+                                <h6 class="text-right">78 164 69 93</h6>
+                            </div>
+                        </div>
+                        <div class="bottom-bar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- jquery slim version 3.2.1 minified -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+</body>
+<script>
+    // window.print();
+    window.onafterprint = function () {
+        window.location.href = "/retraits/";
+    }
+</script>
+</html>

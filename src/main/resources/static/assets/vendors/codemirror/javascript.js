@@ -100,7 +100,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
       return tokenQuasi(stream, state);
     } else if (ch == "#") {
       stream.skipToEnd();
-      return ret("error", "error");
+      return ret("templates.error.error", "templates.error.error");
     } else if (ch == "<" && stream.match("!--") || ch == "-" && stream.match("->")) {
       stream.skipToEnd()
       return ret("comment", "comment")

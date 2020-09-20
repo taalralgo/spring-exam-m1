@@ -20,7 +20,7 @@ public class Utilisateur implements UserDetails
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(length = 100, nullable = false)
+    @Column(length = 100, nullable = false, unique = true)
     private String numeroPiece;
     @Column(nullable = false)
     private String nom;
@@ -32,6 +32,7 @@ public class Utilisateur implements UserDetails
     private String telephone;
 //    Si caissier ou admin
     private String code;
+    private int iv;
     private String photo;
     @Column(length = 40)
     private String numeroContrat;
@@ -39,6 +40,7 @@ public class Utilisateur implements UserDetails
     private String articleContrat;
     @Column(nullable = false)
     private String pwd;
+    private int adminId = 0;
     private boolean changed = false;
     @Transient
     private MultipartFile[] parts;
@@ -205,6 +207,26 @@ public class Utilisateur implements UserDetails
         authorities.add(new SimpleGrantedAuthority(role.getLibRole()));
 
         return authorities;
+    }
+
+    public int getIv()
+    {
+        return iv;
+    }
+
+    public void setIv(int iv)
+    {
+        this.iv = iv;
+    }
+
+    public int getAdminId()
+    {
+        return adminId;
+    }
+
+    public void setAdminId(int adminId)
+    {
+        this.adminId = adminId;
     }
 
     @Override

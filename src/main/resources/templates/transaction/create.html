@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="base.html">
+<head>
+    <meta charset="UTF-8">
+    <title>Transaction-add</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <div th:if="${error}">
+                    <h6 style="color:red;" th:text="${error}">Login ou mot de passe incorrect !!!</h6>
+                </div>
+<!--                <h4 class="card-title">Information de transaction</h4>-->
+                <form th:action="@{/transactions/add}" class="transaction-add" method="post" th:object="${transaction}">
+                    <h4 class="card-description">Information sur la personne qui envoie</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Numero piece</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="numpieceemet" th:field="*{numeroPieceEmetteur}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Prenom</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="prenomemet" th:field="*{prenomEmetteur}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Nom</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="nomemet" th:field="*{nomEmetteur}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Telephone</label>
+                                <div class="col-sm-9">
+                                    <input type="number" class="form-control" id="telephoneemet" th:field="*{telephoneEmetteur}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="card-description">Information sur la personne qui reçoit  </h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Numero piece</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="numpiece" th:field="*{numeroPiece}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Prenom</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="prenom" th:field="*{prenom}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Nom</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="nom" th:field="*{nom}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Telephone</label>
+                                <div class="col-sm-9">
+                                    <input type="number" class="form-control" id="telephone" th:field="*{telephone}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="card-description">Information sur le montant à transférer  </h4>
+                    <div class="row">
+                        <div class="col-md-8 offset-2">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Montant à transférer</label>
+                                <div class="col-sm-9">
+                                    <input type="number" min="5" id="montant" class="form-control" th:field="*{montant}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 offset-2">
+                            <div class="form-group row">
+                                <div class="col-sm-9">
+                                    <button type="submit" class="btn btn-primary">Transferer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="/js/transaction.js"></script>
+</div>
+</body>
+</html>

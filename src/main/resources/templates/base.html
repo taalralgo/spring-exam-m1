@@ -7,8 +7,8 @@
 >
 <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <title>Teliman</title>
     <!-- plugins:css -->
     <link rel="stylesheet" th:href="@{/assets/vendors/mdi/css/materialdesignicons.min.css}">
@@ -16,15 +16,15 @@
     <link rel="stylesheet" th:href="@{/assets/vendors/css/vendor.bundle.base.css}">
     <!-- endinject -->
     <!-- Plugin css for this page -->
-    <link rel="stylesheet" th:href="@{/assets/vendors/jquery-bar-rating/css-stars.css}" />
-    <link rel="stylesheet" th:href="@{/assets/vendors/font-awesome/css/font-awesome.min.css}" />
+    <link rel="stylesheet" th:href="@{/assets/vendors/jquery-bar-rating/css-stars.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/vendors/font-awesome/css/font-awesome.min.css}"/>
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
-    <link rel="stylesheet" th:href="@{/assets/css/demo_2/style.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/demo_2/style.css}"/>
     <!-- End layout styles -->
-    <link rel="shortcut icon" th:href="@{/assets/images/favicon.png}" />
+    <link rel="shortcut icon" th:href="@{/assets/images/favicon.png}"/>
 </head>
 <body>
 <div class="container-scroller">
@@ -33,11 +33,12 @@
         <nav class="navbar top-navbar col-lg-12 col-12 p-0">
             <div class="container">
                 <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                    <a class="navbar-brand brand-logo" href="index.html">
-                        <img src="/assets/images/logo.svg" alt="logo" />
-                        <span class="font-12 d-block font-weight-light">Responsive Dashboard </span>
+                    <a class="navbar-brand brand-logo" href="/">
+<!--                        <img src="/assets/images/logo.svg" alt="logo"/>-->
+                        <span class="font-12 d-block font-weight-light">Transfert D'argent </span>
                     </a>
-                    <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/assets/images/logo-mini.svg" alt="logo" /></a>
+<!--                    <a class="navbar-brand brand-logo-mini" href="/"><img src="/assets/images/logo-mini.svg"-->
+<!--                                                                          alt="logo"/></a>-->
                 </div>
                 <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                     <ul class="navbar-nav mr-lg-2">
@@ -48,21 +49,27 @@
                         <i class="mdi mdi-magnify"></i>
                       </span>
                                 </div>
-                                <input type="text" class="form-control" id="navbar-search-input" placeholder="Search" aria-label="search" aria-describedby="search" />
+                                <input type="text" class="form-control" id="navbar-search-input" placeholder="Search"
+                                       aria-label="search" aria-describedby="search"/>
                             </div>
                         </li>
                     </ul>
                     <ul class="navbar-nav navbar-nav-right">
                         <li class="nav-item nav-profile dropdown">
-                            <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown"
+                               aria-expanded="false">
                                 <div class="nav-profile-img">
-<!--                                    <img src="/assets/images/faces/face1.jpg" alt="image" />-->
-                                    <img th:src="@{'/images/' + ${#authentication.getPrincipal().getPhoto()}}" alt="image" />
+                                    <!--                                    <img src="/assets/images/faces/face1.jpg" alt="image" />-->
+                                    <img th:src="@{'/images/' + ${#authentication.getPrincipal().getPhoto()}}"
+                                         alt="image"/>
                                 </div>
                                 <div class="nav-profile-text">
-<!--                                    <p class="text-black font-weight-semibold m-0"> Olson jass </p>-->
-                                    <p sec:authentication="name" th:text="${#authentication.getPrincipal().getPrenom() + ' ' +#authentication.getPrincipal().getNom() }" class="text-black font-weight-semibold m-0"> Olson jass </p>
-                                    <span class="font-13 online-color">En ligne <i class="mdi mdi-chevron-down"></i></span>
+                                    <!--                                    <p class="text-black font-weight-semibold m-0"> Olson jass </p>-->
+                                    <p sec:authentication="name"
+                                       th:text="${#authentication.getPrincipal().getPrenom() + ' ' +#authentication.getPrincipal().getNom() }"
+                                       class="text-black font-weight-semibold m-0"> Olson jass </p>
+                                    <span class="font-13 online-color">En ligne <i
+                                            class="mdi mdi-chevron-down"></i></span>
                                 </div>
                             </a>
                             <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
@@ -74,7 +81,8 @@
                             </div>
                         </li>
                     </ul>
-                    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="horizontal-menu-toggle">
+                    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                            data-toggle="horizontal-menu-toggle">
                         <span class="mdi mdi-menu"></span>
                     </button>
                 </div>
@@ -84,81 +92,39 @@
             <div class="container">
                 <ul class="nav page-navigation">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" href="/">
                             <i class="mdi mdi-compass-outline menu-icon"></i>
-                            <span class="menu-title">Dashboard</span>
+                            <span class="menu-title">Tableau de board</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="mdi mdi-monitor-dashboard menu-icon"></i>
-                            <span class="menu-title">UI Elements</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="submenu">
-                            <ul class="submenu-item">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdown</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="pages/ui-features/typography.html">Typography</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/forms/basic_elements.html">
+                        <a class="nav-link" th:href="@{/transactions/}">
                             <i class="mdi mdi-clipboard-text menu-icon"></i>
-                            <span class="menu-title">Forms</span>
+                            <span class="menu-title">Transactions</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/icons/mdi.html">
+                        <a class="nav-link" th:href="@{/retraits/}">
                             <i class="mdi mdi-contacts menu-icon"></i>
-                            <span class="menu-title">Icons</span>
+                            <span class="menu-title">Retraits</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/charts/chartjs.html">
+                        <a class="nav-link" th:href="@{/operations/}">
                             <i class="mdi mdi-chart-bar menu-icon"></i>
-                            <span class="menu-title">Charts</span>
+                            <span class="menu-title">Opérations</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/tables/basic-table.html">
+                        <a class="nav-link" th:href="@{/gains/}">
                             <i class="mdi mdi-table-large menu-icon"></i>
-                            <span class="menu-title">Tables</span>
+                            <span class="menu-title">Gains</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a th:href="@{/admin/utilisateurs}" class="nav-link">
                             <i class="mdi mdi-file-document-box menu-icon"></i>
                             <span class="menu-title">Utilisateurs</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <div class="nav-link d-flex">
-                            <button class="btn btn-sm bg-danger text-white"> Trailing </button>
-                            <div class="nav-item dropdown">
-                                <a class="nav-link count-indicator dropdown-toggle text-white font-weight-semibold" id="notificationDropdown" href="#" data-toggle="dropdown"> English </a>
-                                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-                                    <a class="dropdown-item" href="#">
-                                        <i class="flag-icon flag-icon-bl mr-3"></i> French </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="flag-icon flag-icon-cn mr-3"></i> Chinese </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="flag-icon flag-icon-de mr-3"></i> German </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="flag-icon flag-icon-ru mr-3"></i>Russian </a>
-                                </div>
-                            </div>
-                            <a class="text-white" href="index.html"><i class="mdi mdi-home-circle"></i></a>
-                        </div>
                     </li>
                 </ul>
             </div>
@@ -175,8 +141,10 @@
             <footer class="footer">
                 <div class="container">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2019 <a href="https://www.bootstrapdash.com/" target="_blank">BootstrapDash</a>. All rights reserved.</span>
-                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i></span>
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2020 <a
+                                href="https://www.facebooke.com/daouda.thera/" target="_blank">THERA</a>. Tout droit réservé.</span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Daouda S. THERA <i
+                                class="mdi mdi-heart text-danger"></i></span>
                     </div>
                 </div>
             </footer>
@@ -211,5 +179,12 @@
 <!-- End custom js for this page -->
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+<!-- DataTable config by THERA -->
+<script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+
+<!-- NOTIFICATION -->
+<!--<script th:src="@{/js/notify.js}"></script>-->
 </body>
 </html>

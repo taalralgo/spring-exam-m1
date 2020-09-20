@@ -8,6 +8,45 @@ $(document).ready(function () {
             alert("La confirmation de mot de passe n'est pas correcte");
             return false;
         }
+        const role = $('#role').find(":selected").text();
+        const numpiece = $('#numpiece').val();
+        const prenom = $('#prenom').val();
+        const nom = $('#nom').val();
+        const telephone = $('#telephone').val();
+        if(telephone.length != 9) {
+            alert("Le numero de telephone doit etre 9 caracteres.");
+            return false;
+        }
+        switch (role) {
+            case 'ROLE_SUPER':
+                var login = $('#login').val();
+                if(numpiece === '' || prenom === '' || nom === '' || telephone === '' || login === '' ) {
+                    alert("Veuillez renseigner tous les champs!");
+                    return false;
+                }
+                break;
+            case 'ROLE_ADMIN':
+                var login = $('#login').val();
+                if(numpiece === '' || prenom === '' || nom === '' || telephone === '' || login === '' ) {
+                    alert("Veuillez renseigner tous les champs!");
+                    return false;
+                }
+                break;
+            case 'ROLE_CAISSIER':
+                var avatar = $('#avatar').val();
+                var iv = $('#iv').val();
+                if(numpiece === '' || prenom === '' || nom === '' || telephone === '' || avatar === '' || iv === '' ) {
+                    alert("Veuillez renseigner tous les champs!");
+                    return false;
+                }
+                break;
+            case 'ROLE_CLIENT':
+                if(numpiece === '' || prenom === '' || nom === '' || telephone === '') {
+                    alert("Veuillez renseigner tous les champs!");
+                    return false;
+                }
+                break;
+        }
     });
     var firstRole = $.trim($( "select#role option:selected" ).text());
     switch (firstRole) {
@@ -47,6 +86,28 @@ $(document).ready(function () {
                 $('.user-password').hide();
                 break;
         }
+    });
+
+
+    $('.edit-user').click(function () {
+        var userId = $(this).attr('user-id')
+        $.ajax({
+            url: '/admin/user/edit/' + userId,
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data.id);
+                // $('#id').val(data.id)
+                // $('#matricule').val(data.matricule)
+                // $('#nomComplet').val(data.nomComplet)
+                // $('#poste').val(data.poste)
+                // $('#salaire').val(data.salaire)
+                // $('#service').val(data.service.id)
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        })
     });
 
     $('.btnRemove').click(function () {
@@ -99,4 +160,5 @@ $(document).ready(function () {
         })
         //
     });
+
 });

@@ -1,0 +1,224 @@
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.front-invoice-wrapper {
+    margin: 20px auto;
+    max-width: 700px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.front-invoice-top {
+    background-color: #323149;
+    padding: 40px 60px;
+}
+
+.front-invoice-top-left h2, .front-invoice-top-right h2 {
+    color: #ffffff;
+    font-size: 22px;
+    margin-bottom: 4px;
+}
+
+.front-invoice-top-left h3, .front-invoice-top-right h3 {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 15px;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.front-invoice-top-left h5, .front-invoice-top-right h5 {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 0;
+}
+
+.front-invoice-top-right {
+    text-align: right;
+}
+
+.service-name {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 500;
+    margin-top: 60px;
+}
+
+.date {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+}
+
+.front-invoice-bottom {
+    background-color: #ffffff;
+    padding: 40px 60px;
+    position: relative;
+}
+
+.borderless td, .borderless th {
+    border: none !important;
+}
+
+.custom-table td {
+    font-size: 13px;
+    padding: 6px !important;
+    font-weight: 500;
+}
+
+.description {
+    line-height: 1.6;
+}
+
+.specs {
+    margin-top: 30px;
+    font-size: 14px;
+}
+
+.back {
+}
+
+.invoice-wrapper {
+    margin: 20px auto;
+    max-width: 700px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.invoice-top {
+    background: linear-gradient(135deg, #fafafa, #eeeeee);
+    padding: 60px 60px 80px;
+}
+
+.invoice-top-left {
+    /*margin-top: 60px;*/
+}
+
+.invoice-top-left h2, .invoice-top-right h2 {
+    font-size: 22px;
+    margin-bottom: 4px;
+}
+
+.invoice-top-left h3, .invoice-top-right h3 {
+    font-size: 15px;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.invoice-top-left h5, .invoice-top-right h5 {
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 0;
+}
+
+.invoice-top-left h4 {
+    margin-top: 40px;
+    font-size: 22px;
+}
+
+.invoice-top-left h6 {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.invoice-top-right h2, .invoice-top-right h3, .invoice-top-right h5 {
+    text-align: right;
+}
+
+.logo-wrapper {
+    overflow: auto;
+}
+
+
+.invoice-bottom {
+    background-color: #ffffff;
+    padding: 40px 60px;
+    position: relative;
+}
+
+.task-table-wrapper {
+    margin-top: -14%;
+}
+
+.task-table-wrapper .table > thead > tr > th {
+    border: none;
+    padding-left: 0;
+    /*padding-bottom: 30px;*/
+}
+
+.task-table-wrapper .table > tbody > tr:first-child > td {
+    border-top: 0;
+}
+
+.task-table-wrapper .table > tbody > tr > td {
+    padding-top: 25px;
+    padding-left: 0;
+}
+
+.task-table-wrapper .table > tbody > tr > td > h4 {
+    margin-top: 0;
+}
+
+.task-table-wrapper .table tbody .desc {
+    width: 60%;
+}
+
+.desc h3 {
+    margin-top: 0;
+    font-size: 20px;
+}
+
+.desc h5 {
+    font-weight: 400;
+    line-height: 1.4;
+    font-size: 14px;
+}
+
+.invoice-bottom-total {
+    background-color: #fafafa;
+    overflow: auto;
+    margin-top: 50px;
+}
+
+.invoice-bottom-total .no-padding {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.invoice-bottom-total .tax-box, .invoice-bottom-total .add-box, .invoice-bottom-total .sub-total-box {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 10px;
+}
+
+.invoice-bottom-total .total-box {
+    background-color: #323149;
+    padding: 10px;
+}
+
+.invoice-bottom-total .total-box h6 {
+    margin-top: 0;
+    color: #ffffff;
+    text-align: right;
+}
+
+.invoice-bottom-total .total-box h3 {
+    margin-bottom: 0;
+    color: #ffffff;
+    text-align: right;
+}
+
+.divider {
+    margin-top: 50px;
+    margin-bottom: 5px;
+}
+
+.bottom-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 26px;
+    background-color: #323149;
+}
