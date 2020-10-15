@@ -37,7 +37,7 @@ public class DefaultController
         return "error";
     }
 
-    @PreAuthorize("hasAuthority('ROLE_CAISSIER') OR hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_CAISSIER') OR hasAuthority('ROLE_ADMIN') OR hasAuthority('ROLE_SUPER')")
     @GetMapping("/user/reset")
     public String resetpassword(Model model)
     {

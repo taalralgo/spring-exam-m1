@@ -25,7 +25,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin/")
-@PreAuthorize("hasAuthority('ROLE_ADMIN') OR hasAuthority('ROLE_SUPER')")
+//@PreAuthorize("hasAuthority('ROLE_ADMIN') OR hasAuthority('ROLE_SUPER')")
 public class AdminController
 {
     @Autowired

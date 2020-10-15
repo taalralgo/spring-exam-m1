@@ -663,6 +663,9 @@
     if ($("#doughnutChart1").length) {
       var ctx = document.getElementById('doughnutChart1').getContext("2d");
 
+      var retirer = parseInt($('#retirer').text());
+      var nonretirer = parseInt($('#nonretirer').text());
+
       var Blue = '#5e6eed';
 
       var red = '#ff5730';
@@ -671,34 +674,35 @@
 
       var trafficChartData = {
         datasets: [{
-          data: [30, 30, 40],
+          // data: [30, 30, 40],
+          data: [retirer, nonretirer],
           backgroundColor: [
             Blue,
             green,
-            red
+            // red
           ],
           hoverBackgroundColor: [
             Blue,
             green,
-            red
+            // red
           ],
           borderColor: [
             Blue,
             green,
-            red
+            // red
           ],
           legendColor: [
             Blue,
             green,
-            red
+            // red
           ]
         }],
 
         // These labels appear in the legend and in the tooltips when hovering different arcs
         labels: [
-          'Organic search',
-          'Refferral',
-          'Social Media',
+          // 'Transfert',
+          'Retirer',
+          'Non retirer',
         ]
       };
       var trafficChartOptions = {

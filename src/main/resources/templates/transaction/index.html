@@ -35,6 +35,7 @@
         <table class="table table-striped table-bordered">
             <thead>
             <tr>
+                <th>Code</th>
                 <th>Caissier</th>
                 <th>Prenom & nom client</th>
                 <th>Telephone client</th>
@@ -45,6 +46,7 @@
             </thead>
             <tbody>
             <tr th:each="transaction:${transactions}">
+                <td th:text="${transaction.code}">Daouda THERA</td>
                 <td th:text="${transaction.utilisateur.prenom + ' '+ transaction.utilisateur.nom}">Daouda THERA</td>
                 <td th:text="${transaction.prenom+ ' '+ transaction.nom}">Daouda THERA</td>
                 <td th:text="${transaction.telephone}">Mohamed</td>

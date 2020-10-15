@@ -6,4 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface OperationRepository extends JpaRepository<Operation,Long>
 {
     public Operation findAllByRetirerEquals(boolean retirer);
+
+    public Long countAllByRetirerEquals(boolean retirer);
 }
